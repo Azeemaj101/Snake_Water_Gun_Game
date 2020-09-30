@@ -1,65 +1,75 @@
 import random
-import os
-# S For Snake, W For Water, G For Gun
-lst = ['s', 'w', 'g']
 
-# Variables
-Chance = 10
-No_Chance = 0
-Computer_Points = 0
-User_Points = 0
+lst = ["s","w","g"]
+chance = 10
+no_chance = 0
+human_points = 0
+computer_points = 0
 
-_input = {"s": "Snake", "g": "Gun", "w": "Water"}
+print("         Snake , Water , Gun ")
+while no_chance<chance:
+    print("s for Snake\nw for Water\ng for Gun\n")
+    _input = input("Choose one...\n")
+    l = _input.lower()
 
-print("\033[32m\033[01m\t\t\t\t\t*****Welcome To Snake Water Gun Game*****")
-_Name = input("Please Enter Your Name\n")
+    _random = random.choice(lst)
 
-# While loop Run Till 10
-while No_Chance < Chance:
-    # Use Random Module
-    Computer = random.choice(lst)
-    user = input("Enter S For Sanke \nEnter W For Water \nEnter G For Gun\n").lower()
-    if user == Computer:
-        print("Tie Both 0 Points")
-    elif user == 's' and Computer == 'g':
-        Computer_Points = Computer_Points + 1
-        print("Computer Wins 1 Point")
-        print(f"Your Guess {_input[user]} & Computer Guess {_input[Computer]}")
-        print(f"Points: \n{_Name} = {User_Points} \nComputer = {Computer_Points}")
-    elif user == 's' and Computer == 'w':
-        User_Points = User_Points + 1
-        print(f"{_Name} Wins 1 Point")
-        print(f"Your Guess {_input[user]} & Computer Guess {_input[Computer]}")
-        print(f"Points: \n{_Name} = {User_Points} \nComputer = {Computer_Points}")
-    elif user == 'w' and Computer == 's':
-        Computer_Points = Computer_Points + 1
-        print("Computer Wins 1 Point")
-        print(f"Your Guess {_input[user]} & Computer Guess {_input[Computer]}")
-        print(f"Points: \n{_Name} = {User_Points} \nComputer = {Computer_Points}")
-    elif user == 'w' and Computer == 'g':
-        User_Points = User_Points + 1
-        print(f"{_Name} Wins 1 Point")
-        print(f"Your Guess {_input[user]} & Computer Guess {_input[Computer]}")
-        print(f"Points: \n{_Name} = {User_Points} \nComputer = {Computer_Points}")
-    elif user == 'g' and Computer == 's':
-        User_Points = User_Points + 1
-        print(f"{_Name} Wins 1 Point")
-        print(f"Your Guess {_input[user]} & Computer Guess {_input[Computer]}")
-        print(f"Points: \n{_Name} = {User_Points} \nComputer = {Computer_Points}")
-    elif user == 'g' and Computer == 'w':
-        Computer_Points = Computer_Points + 1
-        print("Computer Wins 1 Point")
-        print(f"Your Guess {_input[user]} & Computer Guess {_input[Computer]}")
-        print(f"Points: \n{_Name} = {User_Points} \nComputer = {Computer_Points}")
+    if l == _random:
+        print(f"You chose {l} and Computer chose {_random}\n")
+        print("Tie!!! Both were same")
+
+    # If human choose "s"
+    elif l == "s" and _random == "g":
+        computer_points = computer_points+1
+        print("Computer won with 1 point!!")
+        print(f"You chose {l} and Computer chose {_random}\n")
+        print(f"Your point is {human_points} and Computer point is {computer_points}\n")
+
+    elif l == "s" and _random == "w":
+        human_points = human_points+1
+        print("Human won with 1 point!!")
+        print(f"You chose {l} and Computer chose {_random}\n")
+        print(f"Your point is {human_points} and Computer point is {computer_points}\n")
+
+    # If human choose "w"
+    elif l == "w" and _random == "s":
+        computer_points = computer_points+1
+        print("Computer won with 1 point!!")
+        print(f"You chose {l} and Computer chose {_random}\n")
+        print(f"Your point is {human_points} and Computer point is {computer_points}\n")
+
+    elif l == "w" and _random == "g":
+        human_points = human_points+1
+        print("Human won with 1 point!!")
+        print(f"You chose {l} and Computer chose {_random}\n")
+        print(f"Your point is {human_points} and Computer point is {computer_points}\n")
+
+    # If human choose "g"
+    elif l == "g" and _random == "s":
+        human_points = human_points+1
+        print("Human won with 1 point!!")
+        print(f"You chose {l} and Computer chose {_random}\n")
+        print(f"Your point is {human_points} and Computer point is {computer_points}\n")
+
+    elif l == "g" and _random == "w":
+        computer_points = computer_points+1
+        print("Computer won with 1 point!!")
+        print(f"You chose {l} and Computer chose {_random}\n")
+        print(f"Your point is {human_points} and Computer point is {computer_points}\n")
+
     else:
-        print("Wrong Key")
-        os.system("pause")
-    No_Chance = No_Chance + 1
-print("\n\n\n\t\t\t\t\033[31m*********Game Over*********\n\n\n")
-print(f"Points: \n{_Name} = {User_Points} \nComputer = {Computer_Points}")
-if User_Points > Computer_Points:
-    print(f"Congratulation {_Name} Won The Game")
-elif User_Points < Computer_Points:
-    print("Game Over Computer Won")
-elif User_Points == Computer_Points:
-    print("Game Tie")
+        print("You put wrong input!!!")
+
+    no_chance = no_chance+1
+    print(f"You have left {chance - no_chance} out of {chance}")
+print("Game Over!")
+if human_points == computer_points:
+    print("Tie ")
+elif human_points>computer_points:
+    print(f"Human Won with {human_points} points ")
+    print(f"Your points were {human_points}")
+    print(f"Computer points were {computer_points}")
+else:
+    print(f"Computer won with {computer_points} points")
+    print(f"Computer points were {computer_points}")
+    print(f"Your points were {human_points}")
